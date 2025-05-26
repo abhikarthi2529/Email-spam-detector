@@ -6,7 +6,7 @@ import string
 
 
 def cleanedData():
-    data = pd.read_excel("EmailData.xlsx", usecols=[0, 1])
+    data = pd.read_excel("C:\\Spam Email Classifier\\Project folder\\EmailData.xlsx", usecols=[0, 1])
     cleanText(data, 'text')
     return data
 
