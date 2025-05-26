@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        .left, .right {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            resize: vertical;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .prediction {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .accuracy {
+            font-size: 16px;
+            color: #555;
+        }
+        .error {
+            color: red;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h2>Enter Email Content</h2>
+            <form method="POST" action="/">
+                <textarea name="email" placeholder="Paste the email content here..." required></textarea>
+                <button type="submit">Generate</button>
+            </form>
+        </div>
+        <div class="right">
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+            <div class="prediction">
+                {% if prediction %}
+                    Prediction: {{ prediction }}
+                {% else %}
+                    Prediction: Waiting for input...
+                {% endif %}
+            </div>
+            <div class="accuracy">
+                Model Accuracy: {{ accuracy }}%
+            </div>
+        </div>
+    </div>
+</body>
+</html>
